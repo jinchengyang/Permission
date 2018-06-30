@@ -1,0 +1,51 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: permission-springcloud-service-example
+  profiles:
+    active: test
+
+---
+spring:
+  profiles: test
+  cloud:
+    consul:
+      host: 10.213.3.126
+      port: 8500
+      discovery:
+        enabled: true
+        register: true
+        health-check-interval: 10s
+        health-check-timeout: 1s
+        instance-id: ${spring.application.name}:${spring.profiles}:${server.port}:${spring.cloud.client.hostname}
+        tags: daily
+    config:
+      name: gaea-common
+      label: develop
+      profile: dev
+      discovery:
+        enabled: true
+        serviceId: config-service
+
+---
+spring:
+  profiles: prod
+  cloud:
+    consul:
+      host: mware-consul1.yst.com.cn
+      port: 8500
+      discovery:
+        enabled: true
+        register: true
+        health-check-interval: 5s
+        health-check-timeout: 1s
+        instance-id: ${spring.application.name}:${spring.profiles}:${server.port}:${spring.cloud.client.hostname}
+        tags: production
+    config:
+      name: gaea-common
+      label: master
+      profile: prod
+      discovery:
+        enabled: true
+        serviceId: config-service

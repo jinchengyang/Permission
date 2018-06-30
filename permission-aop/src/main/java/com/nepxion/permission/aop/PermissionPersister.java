@@ -55,6 +55,7 @@ public class PermissionPersister implements ApplicationListener<ContextRefreshed
                         LOG.info("Permission={}", permission);
                     }
                     permissionResource.persist(permissions);
+//                    permissionResource.authorize("1", "1", "1", "1", "1");
                 } else {
                     LOG.warn("Permission list is empty");
                 }

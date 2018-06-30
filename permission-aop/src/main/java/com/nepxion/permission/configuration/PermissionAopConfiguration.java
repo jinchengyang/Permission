@@ -57,8 +57,8 @@ public class PermissionAopConfiguration {
         return new PermissionPersister();
     }
 
-    @Bean
-    public PermissionFeignBeanFactoryPostProcessor permissionFeignBeanFactoryPostProcessor() {
-        return new PermissionFeignBeanFactoryPostProcessor();
-    }
+//    @Bean
+//    public PermissionFeignBeanFactoryPostProcessor permissionFeignBeanFactoryPostProcessor() {
+//        return new PermissionFeignBeanFactoryPostProcessor();
+//    }
 }

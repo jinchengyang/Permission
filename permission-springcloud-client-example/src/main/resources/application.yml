@@ -1,0 +1,71 @@
+############################################## 自定义 ##############################################
+
+dynamic:
+  base:
+    version: v1.x
+    package: com.yst.gaea.rbac
+    description: 权限中心
+  teamwork:
+    contact:
+      name: Product R&D - Group 4
+      mail: chy_kfsiz@mail.yst.com.cn
+      url: http://yy-wiki.yst.com.cn
+
+############################################### mybatis ###############################################
+
+mybatis:
+  typeAliasesPackage: ${dynamic.base.package}.api.model
+  mapperLocations: classpath*:mapper/*Mapper.xml
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+############################################### swagger ###############################################
+
+springfox:
+  documentation.swagger.v2.path: /swagger/web-docs
+swagger:
+  version: ${dynamic.base.version}
+  basePackage: ${dynamic.base.package}.web
+  title: ${spring.application.name}
+  description: ${dynamic.base.description}
+  asHomePage: true
+  contact:
+    name: ${dynamic.teamwork.contact.name}
+    email: ${dynamic.teamwork.contact.mail}
+    url: ${dynamic.teamwork.contact.url}
+
+############################################### Permission config ###############################################
+# 权限拦截开启和关闭，不加这行，视为开启
+permission:
+  enabled: true
+# 权限系统的服务名，作为Feign的寻址名
+  service:
+    name: permission-springcloud-service-example
+# 扫描含有@Permission注解的接口或者类所在目录
+  scan:
+    packages: com.nepxion.permission.example.client.service
+# 如果开启，默认每次服务启动时候，会往权限系统的数据库插入权限（权限不存在则插入，权限存在则覆盖）
+  automatic:
+    persist:
+      enabled: true
+# 权限系统验证拦截的用户类型白名单（例如用户类型是LDAP，那么对LDAP的用户做权限验证拦截）,多个值以“;”分隔
+  user:
+    type:
+      whitelist: LDAP
+
+# Cache config
+prefix: permission
+cache:
+  enabled: false
+  type: redisCache
+# 扫描含有@Cacheable，@CacheEvict，@CachePut等注解的接口或者类所在目录
+  scan:
+    packages: com.nepxion.permission
+
+frequent:
+  log:
+    print: true
