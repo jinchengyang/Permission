@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="gaea-rbac-center" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <!-- TKmybatis配置 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.Mapper}"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://mms-mysql-test.idc.yst.com.cn/ssotest"
+                        userId="ssouser"
+                        password="mmstest123">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"></property>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.yst.gaea.rbac.api.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"></property>
+            <property name="constructorBased" value="false"></property>
+            <property name="immutable" value="false"></property>
+            <property name="trimStrings" value="true"></property>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.nepxion.permission.core.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"></property>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.nepxion.permission.core.dao" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"></property>
+        </javaClientGenerator>
+
+
+        <!--<table tableName="param_platform" domainObjectName="PlatformParam"/>-->
+        <!--<table tableName="param_supplier" domainObjectName="SupplierParam"/>-->
+
+    </context>
+</generatorConfiguration>

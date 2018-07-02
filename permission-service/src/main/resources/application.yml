@@ -1,0 +1,39 @@
+############################################## 自定义 ##############################################
+
+dynamic:
+  base:
+    version: v1.x
+    package: com.nepxion.permission
+    description: 权限中心
+  teamwork:
+    contact:
+      name: Product R&D - Group 4
+      mail: chy_kfsiz@mail.yst.com.cn
+      url: http://yy-wiki.yst.com.cn
+
+############################################### mybatis ###############################################
+
+mybatis:
+  typeAliasesPackage: ${dynamic.base.package}.api.model
+  mapperLocations: classpath*:mapper/*Mapper.xml
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+############################################### swagger ###############################################
+
+springfox:
+  documentation.swagger.v2.path: /swagger/web-docs
+swagger:
+  version: ${dynamic.base.version}
+  basePackage: ${dynamic.base.package}.web
+  title: ${spring.application.name}
+  description: ${dynamic.base.description}
+  asHomePage: true
+  contact:
+    name: ${dynamic.teamwork.contact.name}
+    email: ${dynamic.teamwork.contact.mail}
+    url: ${dynamic.teamwork.contact.url}
