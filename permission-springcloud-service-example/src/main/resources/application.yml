@@ -3,7 +3,7 @@
 dynamic:
   base:
     version: v1.x
-    package: com.yst.gaea.rbac
+    package: com.nepxion.permission
     description: 权限中心
   teamwork:
     contact:
